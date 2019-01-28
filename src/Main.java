@@ -1,6 +1,6 @@
-package mymain;
+package src;
 
-import toto.*;
+import src.Toto;
 
 public class Main {
 

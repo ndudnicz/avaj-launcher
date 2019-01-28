@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 RUN chmod +x compil.sh
 RUN ./compil.sh
-CMD ["java", "-classpath", "src", "Main"]
+CMD ["java", "src.Main"]
 
 # docker build -t avaj .
 # docker run avaj
