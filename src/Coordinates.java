@@ -5,7 +5,7 @@ public class Coordinates {
   private int latitude;
   private int height;
 
-  protected Coordinates(
+  Coordinates(
     int longitude,
     int latitude,
     int height

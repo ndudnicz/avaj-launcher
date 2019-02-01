@@ -8,6 +8,8 @@ public class Aircraft {
   protected Coordinates coordinates;
   private static long idCounter = 0;
 
+  protected String type;
+
   protected Aircraft(
     String name,
     Coordinates coordinates
@@ -24,5 +26,13 @@ public class Aircraft {
 
   public long getId() {
     return (this.id);
+  }
+
+  public String getName() {
+    return (this.name);
+  }
+
+  public String getType() {
+    return (this.type);
   }
 }

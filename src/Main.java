@@ -2,18 +2,20 @@ package src;
 
 import src.Aircraft;
 import src.Coordinates;
+import src.Tower;
 
 public class Main {
 
   public static void main(String[] args) {
 
+    WeatherTower t = new WeatherTower();
     Coordinates c = new Coordinates(0,0,0);
-    Aircraft a = new Aircraft("toto plane", c);
-    Aircraft b = new Aircraft("toto plane", c);
-    Aircraft d = new Aircraft("toto plane", c);
-    System.out.println(a.getId());
-    System.out.println(b.getId());
-    System.out.println(d.getId());
+    Helicopter h = new Helicopter("helico", c);
+    Baloon b = new Baloon("baloon", c);
+    t.register(h);
+    t.register(b);
+    t.unregister(b);
+    t.unregister(h);
 
   }
 
