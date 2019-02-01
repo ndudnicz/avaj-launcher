@@ -8,9 +8,19 @@ import src.Flyable;
 
 public class Tower {
   private ArrayList<Flyable> observers;
+  private FileWriter fileWriter;
+  private PrintWriter printWriter;
 
   protected Tower() {
     this.observers = new ArrayList<Flyable>();
+    try {
+      this.fileWriter = new FileWriter("./simulation.txt");
+      this.printWriter = new PrintWriter(this.fileWriter);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      System.exit(1);
+    }
+
   }
 
   protected void conditionsChanged() {
@@ -18,38 +28,36 @@ public class Tower {
   }
 
   public void register(Flyable flyable) {
-    // if (!observers.contains(flyable)) {
+    if (!observers.contains(flyable)) {
       Aircraft a = (Aircraft)flyable;
-
-      System.out.println("register");
-      String str = String.format("Tower says: %s#%s (%d) registered to weather tower.\n", a.getType(), a.getName(), a.getId());
+      String str = String.format("Tower says: %s#%s(%d) registered to weather tower.", a.getType(), a.getName(), a.getId());
       this._writeInFile(str);
       observers.add(flyable);
-    // }
+    }
   }
 
   public void unregister(Flyable flyable) {
-    // if (observers.contains(flyable)) {
+    if (observers.contains(flyable)) {
       Aircraft a = (Aircraft)flyable;
-
-      System.out.println("unregister");
-      String str = String.format("Tower says: %s#%s (%d) unregistered from weather tower.\n", a.getType(), a.getName(), a.getId());
+      String str = String.format("Tower says: %s#%s(%d) unregistered from weather tower.", a.getType(), a.getName(), a.getId());
       this._writeInFile(str);
       observers.remove(flyable);
-    // }
+    }
   }
 
   private void _writeInFile(String str) {
     try {
-      System.out.println(str);
-      FileWriter fileWriter = new FileWriter("./simulation.txt");
-      PrintWriter printWriter = new PrintWriter(fileWriter);
-      printWriter.println(str);
-      printWriter.close();
+      this.printWriter.println(str);
     } catch (Exception e) {
       System.out.println(e.getMessage());
       System.exit(1);
     }
   }
+
+
+  public void closePrintWriter() {
+    this.printWriter.close();
+  }
+
 
 }
