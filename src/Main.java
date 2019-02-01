@@ -1,13 +1,19 @@
 package src;
 
-import src.Toto;
+import src.Aircraft;
+import src.Coordinates;
 
 public class Main {
 
   public static void main(String[] args) {
 
-    Toto t = new Toto("new toto 1");
-    System.out.println(t.toString());
+    Coordinates c = new Coordinates(0,0,0);
+    Aircraft a = new Aircraft("toto plane", c);
+    Aircraft b = new Aircraft("toto plane", c);
+    Aircraft d = new Aircraft("toto plane", c);
+    System.out.println(a.getId());
+    System.out.println(b.getId());
+    System.out.println(d.getId());
 
   }
 
