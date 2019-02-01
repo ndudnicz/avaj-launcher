@@ -1,4 +1,0 @@
-Tower says: Helicopter#helico(0) registered to weather tower.
-Tower says: Baloon#baloon(1) registered to weather tower.
-Tower says: Baloon#baloon(1) unregistered from weather tower.
-Tower says: Helicopter#helico(0) unregistered from weather tower.
