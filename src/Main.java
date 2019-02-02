@@ -19,21 +19,30 @@ public class Main {
   private static Matcher _matcher = null;
   private static ArrayList<Flyable> _tmp = new ArrayList<Flyable>();
   private static WeatherTower _tower = new WeatherTower();
+  private static String errorLine = null;
 
   public static void main(String[] args) {
 
     ArrayList<String> lines = null;
 
+    if (args.length != 1) {
+      System.out.printf("Usage:\n\tjava src.Main ./scenario/path\n");
+      System.exit(1);
+    }
     try {
       _readFile(args[0]);
+      _tower.openPrintWriter();
       _transferTmpToTower();
       _tower.closePrintWriter();
     } catch (InvalidLineException e) {
-      System.out.printf("Error: %s\n", e);
+      System.out.printf("Error: %s\n", e.getMessage());
       System.exit(1);
     } catch (Exception e) {
-      System.out.printf("Error: %s\n", e);
+      System.out.printf("Error: %s\n", e.getMessage());
       System.exit(1);
+    // } catch (IOException e) {
+    //   System.out.printf("Error: %s\n", e.getMessage());
+    //   System.exit(1);
     } finally {
       _tower.closePrintWriter();
     }
@@ -52,12 +61,12 @@ public class Main {
       if (_matcher.find()) {
         try {
           _simulationTimes = Integer.parseInt(line);
-          // System.out.printf("_simulationTimes: %d\n",_simulationTimes); // DEBUG
         } catch(Exception e) {
-          // System.out.printf("_validLine false: %s\n",line);//DEBUG
+          errorLine = line;
           return (false);
         }
       } else {
+        errorLine = line;
         System.out.printf("_validLine false: %s\n",line);//DEBUG
         return (false);
       }
@@ -70,9 +79,10 @@ public class Main {
         int height = Integer.parseInt(_matcher.group(5));
         Flyable f = AircraftFactory.newAircraft(_matcher.group(1), _matcher.group(2), longitude, latitude, height);
         _tmp.add(f);
-        System.out.printf("add flyable: %s\n", ((Aircraft)f).toString()); //DEBUG
+        // System.out.printf("add flyable: %s\n", ((Aircraft)f).toString()); //DEBUG
       } else {
-        System.out.printf("_validLine false: %s\n",line);//DEBUG
+        errorLine = line;
+        // System.out.printf("_validLine false: %s\n",line);//DEBUG
         return (false);
       }
     }
@@ -87,14 +97,17 @@ public class Main {
       fr = new FileReader(filename);
       br = new BufferedReader(fr);
       String sCurrentLine;
+      int lnumber = 1;
 
       while ((sCurrentLine = br.readLine()) != null) {
         if (_validLine(sCurrentLine) == false) {
-          throw new InvalidLineException("Invalid Line");
+          throw new InvalidLineException(String.format("Invalid Line: %d: %s", lnumber, errorLine));
         }
+        lnumber++;
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      System.out.printf("Error: %s\n", e.getMessage());
+      System.exit(1);
     } finally {
       try {
         if (br != null) {
@@ -104,7 +117,8 @@ public class Main {
           fr.close();
         }
       } catch (IOException ex) {
-        ex.printStackTrace();
+        System.out.printf("Error: %s\n", ex.getMessage());
+        System.exit(1);
       }
     }
   }

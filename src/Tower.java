@@ -13,14 +13,6 @@ public class Tower {
 
   protected Tower() {
     this.observers = new ArrayList<Flyable>();
-    try {
-      this.fileWriter = new FileWriter("./simulation.txt");
-      this.printWriter = new PrintWriter(this.fileWriter);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-      System.exit(1);
-    }
-
   }
 
   protected void conditionsChanged() {
@@ -54,6 +46,15 @@ public class Tower {
     }
   }
 
+  public void openPrintWriter() {
+    try {
+      this.fileWriter = new FileWriter("./simulation.txt");
+      this.printWriter = new PrintWriter(this.fileWriter);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      System.exit(1);
+    }
+  }
 
   public void closePrintWriter() {
     this.printWriter.close();
