@@ -35,4 +35,8 @@ public class Aircraft {
   public String getType() {
     return (this.type);
   }
+
+  public String toString() {
+    return String.format("%s#%s(%d)", this.getType(), this.getName(), this.getId());
+  }
 }

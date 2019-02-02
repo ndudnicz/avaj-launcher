@@ -8,7 +8,12 @@ public class Main {
 
   public static void main(String[] args) {
 
-    System.out.printf("arg: %s",args[0]);
+    try {
+      System.out.printf("arg: %s",args[0]);
+    } catch (Exception e) {
+      System.out.printf("Error: %s\n", e);
+      System.exit(1);
+    }
     WeatherTower t = new WeatherTower();
     Coordinates c = new Coordinates(0,0,0);
     Helicopter h = new Helicopter("helico", c);

@@ -30,7 +30,7 @@ public class Tower {
   public void register(Flyable flyable) {
     if (!observers.contains(flyable)) {
       Aircraft a = (Aircraft)flyable;
-      String str = String.format("Tower says: %s#%s(%d) registered to weather tower.", a.getType(), a.getName(), a.getId());
+      String str = String.format("Tower says: %s registered to weather tower.", a.toString());
       this._writeInFile(str);
       observers.add(flyable);
     }
@@ -39,7 +39,7 @@ public class Tower {
   public void unregister(Flyable flyable) {
     if (observers.contains(flyable)) {
       Aircraft a = (Aircraft)flyable;
-      String str = String.format("Tower says: %s#%s(%d) unregistered from weather tower.", a.getType(), a.getName(), a.getId());
+      String str = String.format("Tower says: %s unregistered from weather tower.", a.toString());
       this._writeInFile(str);
       observers.remove(flyable);
     }
