@@ -40,9 +40,6 @@ public class Main {
     } catch (Exception e) {
       System.out.printf("Error: %s\n", e.getMessage());
       System.exit(1);
-    // } catch (IOException e) {
-    //   System.out.printf("Error: %s\n", e.getMessage());
-    //   System.exit(1);
     } finally {
       _tower.closePrintWriter();
     }
@@ -79,10 +76,8 @@ public class Main {
         int height = Integer.parseInt(_matcher.group(5));
         Flyable f = AircraftFactory.newAircraft(_matcher.group(1), _matcher.group(2), longitude, latitude, height);
         _tmp.add(f);
-        // System.out.printf("add flyable: %s\n", ((Aircraft)f).toString()); //DEBUG
       } else {
         errorLine = line;
-        // System.out.printf("_validLine false: %s\n",line);//DEBUG
         return (false);
       }
     }
