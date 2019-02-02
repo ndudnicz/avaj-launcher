@@ -11,7 +11,6 @@ public class JetPlane extends Aircraft implements Flyable  {
     Coordinates coordinates
   ) {
     super(name, coordinates);
-    this.type = "JetPlane";
   }
 
   public void updateConditions() {

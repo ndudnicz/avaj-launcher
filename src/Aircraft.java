@@ -8,14 +8,12 @@ public class Aircraft {
   protected Coordinates coordinates;
   private static long idCounter = 0;
 
-  protected String type;
-
   protected Aircraft(
     String name,
     Coordinates coordinates
   ) {
     this.name = name;
-    this.coordinates = coordinates;
+    this.coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight());
     this.id = this.nextId();
     idCounter++;
   }
@@ -33,7 +31,7 @@ public class Aircraft {
   }
 
   public String getType() {
-    return (this.type);
+    return (this.getClass().getSimpleName());
   }
 
   public String toString() {

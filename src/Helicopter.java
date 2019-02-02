@@ -11,7 +11,6 @@ public class Helicopter extends Aircraft implements Flyable  {
     Coordinates coordinates
   ) {
     super(name, coordinates);
-    this.type = "Helicopter";
   }
 
   public void updateConditions() {
