@@ -33,6 +33,7 @@ public class Main {
       _readFile(args[0]);
       _tower.openPrintWriter();
       _transferTmpToTower();
+      _tower.run(_simulationTimes);
       _tower.closePrintWriter();
     } catch (InvalidLineException e) {
       System.out.printf("Error: %s\n", e.getMessage());
@@ -47,7 +48,7 @@ public class Main {
 
   private static void _transferTmpToTower() {
     for (int i = 0; i < _tmp.size(); i++) {
-      _tower.register(_tmp.get(i));
+      ((Flyable)(_tmp.get(i))).registerTower(_tower);
     }
   }
 

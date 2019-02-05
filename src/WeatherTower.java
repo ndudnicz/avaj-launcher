@@ -6,13 +6,19 @@ import src.Tower;
 
 public class WeatherTower extends Tower {
 
+  private static String[] _weathers = {
+    "RAIN",
+    "FOG",
+    "SUN",
+    "SNOW"
+  };
+
   public WeatherTower() {
     super();
   }
 
   public String getWeather(Coordinates coordinates) {
-    // TODO
-    return ("toto");
+    return (_weathers[(coordinates.getLongitude() + coordinates.getLatitude() + coordinates.getHeight()) % 4]);
   }
 
   void changeWeather() {

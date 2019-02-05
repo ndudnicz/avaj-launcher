@@ -60,5 +60,15 @@ public class Tower {
     this.printWriter.close();
   }
 
+  public void run(long simulationTimes) {
+    // System.out.printf("start running\n"); // DEBUG
+    for (long i = 0; i < simulationTimes; i++) {
+      for (int j = 0; j < this.observers.size(); j++) {
+        // System.out.printf("%s\n", this.observers.get(j).toString());
+        // ((Flyable)(_tmp.get(i))).registerTower(_tower);
+      }
+    }
+  }
+
 
 }
