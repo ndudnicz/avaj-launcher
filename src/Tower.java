@@ -61,11 +61,17 @@ public class Tower {
   }
 
   public void run(long simulationTimes) {
-    // System.out.printf("start running\n"); // DEBUG
     for (long i = 0; i < simulationTimes; i++) {
       for (int j = 0; j < this.observers.size(); j++) {
-        // System.out.printf("%s\n", this.observers.get(j).toString());
-        // ((Flyable)(_tmp.get(i))).registerTower(_tower);
+        String str = String.format("%s: %s", this.observers.get(j).toString(), this.observers.get(j).howIsTheWeather());
+        this._writeInFile(str);
+        this.observers.get(j).updateConditions();
+        Aircraft a = (Aircraft)this.observers.get(j);
+        if (a.getCoordinates().getHeight() <= 0) {
+          this._writeInFile(String.format("%s coordinates: %s", a.toString(), a.getCoordinates().toString()));
+          this._writeInFile(String.format("%s: landing.", a.toString()));
+          this.unregister(this.observers.get(j));
+        }
       }
     }
   }

@@ -36,10 +36,10 @@ public class Main {
       _tower.run(_simulationTimes);
       _tower.closePrintWriter();
     } catch (InvalidLineException e) {
-      System.out.printf("Error: %s\n", e.getMessage());
+      System.out.printf("main() InvalidLineException: %s\n", e.getMessage());
       System.exit(1);
     } catch (Exception e) {
-      System.out.printf("Error: %s\n", e.getMessage());
+      System.out.printf("main() Exception: %s\n", e);
       System.exit(1);
     } finally {
       _tower.closePrintWriter();
@@ -102,7 +102,7 @@ public class Main {
         lnumber++;
       }
     } catch (IOException e) {
-      System.out.printf("Error: %s\n", e.getMessage());
+      System.out.printf("main._readFile() IOException: %s\n", e.getMessage());
       System.exit(1);
     } finally {
       try {
@@ -113,7 +113,7 @@ public class Main {
           fr.close();
         }
       } catch (IOException ex) {
-        System.out.printf("Error: %s\n", ex.getMessage());
+        System.out.printf("main._readFile() Error: %s\n", ex.getMessage());
         System.exit(1);
       }
     }

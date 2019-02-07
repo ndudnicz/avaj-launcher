@@ -8,7 +8,7 @@ public class Aircraft {
   protected long id;
   protected String name;
   protected Coordinates coordinates;
-  private static long idCounter = 0;
+  private static long idCounter = 1;
   HashMap<String, String> weatherQuotes;
 
   protected Aircraft(
@@ -42,4 +42,12 @@ public class Aircraft {
     return String.format("%s#%s(%d)", this.getType(), this.getName(), this.getId());
   }
 
+  public String howIsTheWeather() {
+    String currentWeather = this.wt.getWeather(this.coordinates);
+    return (this.weatherQuotes.get(currentWeather));
+  }
+
+  public Coordinates getCoordinates() {
+    return (this.coordinates);
+  }
 }

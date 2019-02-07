@@ -26,4 +26,28 @@ public class Coordinates {
   public int getHeight() {
     return (this.height);
   }
+
+  public void incLongitude(int inc) {
+    if (inc > 0) {
+      this.longitude += inc;
+    }
+  }
+
+  public void incLatitude(int inc) {
+    if (inc > 0) {
+      this.latitude += inc;
+    }
+  }
+
+  public void incHeight(int inc) {
+    if (inc > 0) {
+      this.height = this.height + inc > 100 ? 100 : this.height + inc;
+    } else if (inc < 0) {
+      this.height = -inc >= this.height ? 0 : this.height + inc;
+    }
+  }
+
+  public String toString() {
+    return (String.format("longitude: %d, latitude: %d, height: %d", this.getLongitude(), this.getLatitude(), this.getHeight()));
+  }
 }
