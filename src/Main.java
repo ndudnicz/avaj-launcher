@@ -65,7 +65,6 @@ public class Main {
         }
       } else {
         errorLine = line;
-        System.out.printf("_validLine false: %s\n",line);//DEBUG
         return (false);
       }
     } else {

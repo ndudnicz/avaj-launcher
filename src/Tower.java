@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import src.Aircraft;
 import src.Flyable;
+import src.WeatherTower;
 
 public class Tower {
   private ArrayList<Flyable> observers;
@@ -16,7 +17,17 @@ public class Tower {
   }
 
   protected void conditionsChanged() {
-    // TODO
+    for (int j = 0; j < this.observers.size(); j++) {
+      String str = String.format("%s: %s", this.observers.get(j).toString(), this.observers.get(j).howIsTheWeather());
+      this._writeInFile(str);
+      this.observers.get(j).updateConditions();
+      Aircraft a = (Aircraft)this.observers.get(j);
+      if (a.getCoordinates().getHeight() <= 0) {
+        this._writeInFile(String.format("%s coordinates: %s", a.toString(), a.getCoordinates().toString()));
+        this._writeInFile(String.format("%s: landing.", a.toString()));
+        this.unregister(this.observers.get(j));
+      }
+    }
   }
 
   public void register(Flyable flyable) {
@@ -59,22 +70,5 @@ public class Tower {
   public void closePrintWriter() {
     this.printWriter.close();
   }
-
-  public void run(long simulationTimes) {
-    for (long i = 0; i < simulationTimes; i++) {
-      for (int j = 0; j < this.observers.size(); j++) {
-        String str = String.format("%s: %s", this.observers.get(j).toString(), this.observers.get(j).howIsTheWeather());
-        this._writeInFile(str);
-        this.observers.get(j).updateConditions();
-        Aircraft a = (Aircraft)this.observers.get(j);
-        if (a.getCoordinates().getHeight() <= 0) {
-          this._writeInFile(String.format("%s coordinates: %s", a.toString(), a.getCoordinates().toString()));
-          this._writeInFile(String.format("%s: landing.", a.toString()));
-          this.unregister(this.observers.get(j));
-        }
-      }
-    }
-  }
-
 
 }
