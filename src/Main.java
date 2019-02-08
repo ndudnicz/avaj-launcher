@@ -14,7 +14,7 @@ import src.AircraftFactory;
 
 public class Main {
 
-  private static long _simulationTimes = -1;
+  private static int _simulationTimes = -1;
   private static Pattern _pattern = null;
   private static Matcher _matcher = null;
   private static ArrayList<Flyable> _tmp = new ArrayList<Flyable>();

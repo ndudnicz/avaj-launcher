@@ -19,7 +19,7 @@ public class WeatherTower extends Tower {
     this.conditionsChanged();
   }
 
-  public void run(long simulationTimes) {
+  public void run(int simulationTimes) {
     for (long i = 0; i < simulationTimes; i++) {
       this.changeWeather();
     }
