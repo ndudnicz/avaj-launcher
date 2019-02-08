@@ -7,6 +7,9 @@ import src.Flyable;
 import src.Coordinates;
 
 public class AircraftFactory {
+
+  private AircraftFactory() {}
+
   public static Flyable newAircraft(
     String type,
     String name,

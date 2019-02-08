@@ -4,7 +4,6 @@ import src.Coordinates;
 import java.util.HashMap;
 
 public class Aircraft {
-  protected WeatherTower wt;
   protected long id;
   protected String name;
   protected Coordinates coordinates;
@@ -40,11 +39,6 @@ public class Aircraft {
 
   public String toString() {
     return String.format("%s#%s(%d)", this.getType(), this.getName(), this.getId());
-  }
-
-  public String howIsTheWeather() {
-    String currentWeather = this.wt.getWeather(this.coordinates);
-    return (this.weatherQuotes.get(currentWeather));
   }
 
   public Coordinates getCoordinates() {

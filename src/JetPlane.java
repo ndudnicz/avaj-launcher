@@ -7,6 +7,8 @@ import src.WeatherTower;
 
 public class JetPlane extends Aircraft implements Flyable  {
 
+  private WeatherTower weatherTower;
+
   JetPlane(
     String name,
     Coordinates coordinates
@@ -19,7 +21,7 @@ public class JetPlane extends Aircraft implements Flyable  {
   }
 
   public void updateConditions() {
-    switch (this.wt.getWeather(this.coordinates)) {
+    switch (this.weatherTower.getWeather(this.coordinates)) {
       case "SUN":
         this.coordinates.incLatitude(10);
         this.coordinates.incHeight(2);
@@ -38,9 +40,14 @@ public class JetPlane extends Aircraft implements Flyable  {
     }
   }
 
-  public void registerTower(WeatherTower wt) {
-    this.wt = wt;
-    wt.register(this);
+  public void registerTower(WeatherTower weatherTower) {
+    this.weatherTower = weatherTower;
+    weatherTower.register(this);
+  }
+
+  public String howIsTheWeather() {
+    String currentWeather = this.weatherTower.getWeather(this.coordinates);
+    return (this.weatherQuotes.get(currentWeather));
   }
 
 }
