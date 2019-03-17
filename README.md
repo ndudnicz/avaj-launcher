@@ -5,6 +5,6 @@ First projet of the Java projects arc. Implementation of a simple Java program a
 
 #### AVAJ-LAUNCHER
 ```shell
-$> build_and_run_docker.sh <scenario_file>
+$> ./build_and_run_docker.sh <scenario_file>
 ```
 
